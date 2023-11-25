@@ -139,6 +139,7 @@ class PurchaseCreateView(View):
         return render(request, self.template_name, context)
 
     def post(self, request, pk):
+        form = self.form_class(request.POST)
         formset = PurchaseItemFormset(request.POST)                             # recieves a post method for the formset
         supplierobj = get_object_or_404(Supplier, pk=pk)                        # gets the supplier object
         if formset.is_valid():
